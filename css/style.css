@@ -100,3 +100,106 @@ header nav a:hover {
   background-color: var(--cor-destaque);
   border-color: var(--cor-destaque);
 }
+
+/* ---------- Conteúdo principal ---------- */
+main {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Cada seção grande do site vira uma caixa branca */
+main > section {
+  background-color: var(--cor-caixa);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* Títulos */
+h1 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--cor-destaque);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--cor-destaque);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+/* Quando o menu leva até uma seção, o título não fica colado no topo */
+section[id],
+article[id],
+aside[id] {
+  scroll-margin-top: 16px;
+}
+
+a {
+  color: var(--cor-destaque-escura);
+}
+
+/* Imagens e legendas */
+figure {
+  margin: 16px 0;
+  text-align: center;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #555555;
+}
+
+/* Foto grande da abertura: altura limitada para não ocupar a tela toda */
+.banner img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+}
+
+main > section img {
+  border-radius: 4px;
+}
+
+/* Sumário da seção Sobre */
+#sobre nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-left: 20px;
+}
+
+/* Curiosidade em destaque */
+aside {
+  background-color: #fff4d6;
+  border-left: 5px solid #ffb400;
+  padding: 4px 16px;
+  margin: 16px 0;
+}
+
+/* Glossário e horários */
+dt {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+dd {
+  margin-left: 20px;
+}
+
+address {
+  font-style: normal;
+}
+
+address p {
+  margin: 0;
+}
