@@ -259,3 +259,50 @@ formCadastro.addEventListener("reset", function () {
   limparErros(formCadastro);
   caixaCadastro.hidden = true;
 });
+
+/* ---------- Formulário de contato ---------- */
+const formContato = document.getElementById("form-contato");
+const caixaContato = document.getElementById("contato-aviso");
+
+formContato.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+
+  limparErros(formContato);
+  caixaContato.hidden = true;
+
+  const campoNome = document.getElementById("contato-nome");
+  const campoEmail = document.getElementById("contato-email");
+  const campoAssunto = document.getElementById("assunto");
+  const campoMensagem = document.getElementById("contato-mensagem");
+  const modeloEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const faltando = [];
+
+  if (campoNome.value.trim() === "") {
+    faltando.push("o nome");
+    marcarErro(campoNome);
+  }
+  if (!modeloEmail.test(campoEmail.value.trim())) {
+    faltando.push("um e-mail válido");
+    marcarErro(campoEmail);
+  }
+  if (campoAssunto.value === "") {
+    faltando.push("o assunto");
+    marcarErro(campoAssunto);
+  }
+  if (campoMensagem.value.trim() === "") {
+    faltando.push("a mensagem");
+    marcarErro(campoMensagem);
+  }
+
+  if (faltando.length > 0) {
+    mostrarMensagem(caixaContato, "erro", "<p>Preencha: " + faltando.join(", ") + ".</p>");
+    return;
+  }
+
+  mostrarMensagem(
+    caixaContato,
+    "sucesso",
+    "<p>Mensagem enviada, " + escaparHtml(campoNome.value.trim()) + "! (Simulação: nada é enviado de verdade.)</p>"
+  );
+  formContato.reset();
+});
