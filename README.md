@@ -66,12 +66,9 @@ Regras de validação:
 
 | Campo | Regra |
 | --- | --- |
-| Nome completo | obrigatório, pelo menos 3 letras |
-| E-mail | obrigatório, no formato nome@dominio.com |
-| Data de nascimento | obrigatória, não pode ser no futuro, idade entre 10 e 120 anos |
-| Altura | opcional; se preenchida, entre 1,00 m e 2,50 m |
-| Quantas lutas assistiu | obrigatório, número inteiro de 0 a 500 |
-| Melhor lutador, categoria e termos | obrigatórios |
+| Nome completo | Lucas Correa Tomm |
+| E-mail | lucas_tomm@estudante.sesisenai.org.br |
+| Data de nascimento | 26/02/2010 |
 
 Como os números são tratados:
 
@@ -119,7 +116,7 @@ Os testes do formulário de cadastro e do formulário de contato foram feitos co
 | 13 | Contato vazio | mensagem dizendo o que falta preencher | OK |
 | 14 | Contato preenchido | confirmação de envio (simulação) | OK |
 
-Teste de teclado (só com a tecla Tab) e conferência da página no tamanho de celular: ainda preciso registrar aqui depois de fazer no navegador.
+Teste de teclado (só com a tecla Tab) e conferência da página no tamanho de celular: feitos 
 
 ## Dificuldades
 
