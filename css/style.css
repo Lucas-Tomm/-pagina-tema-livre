@@ -203,3 +203,44 @@ address {
 address p {
   margin: 0;
 }
+
+/* ---------- Tabela de dados ---------- */
+
+/* Em telas pequenas a tabela rola de lado, sem cortar o conteúdo */
+.tabela-rolagem {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+caption {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+
+th,
+td {
+  border: 1px solid var(--cor-borda);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+thead th {
+  background-color: var(--cor-escura);
+  color: #ffffff;
+}
+
+/* Linhas alternadas ficam com cores diferentes para facilitar a leitura */
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tfoot th,
+tfoot td {
+  background-color: #e6e6e6;
+}
