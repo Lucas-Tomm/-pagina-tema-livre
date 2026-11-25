@@ -170,3 +170,92 @@ function validarCadastro(formulario) {
 
   return { erros: erros, dados: dados };
 }
+
+/* ---------- Cálculos do resultado ---------- */
+
+// Calcula a idade em anos a partir da data no formato AAAA-MM-DD
+// (formato devolvido pelo campo type="date")
+function calcularIdade(dataTexto) {
+  const nascimento = new Date(dataTexto + "T00:00:00");
+  const hoje = new Date();
+
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+
+  // Se o aniversário ainda não chegou neste ano, tira 1 ano
+  const jaFezAniversario =
+    hoje.getMonth() > nascimento.getMonth() ||
+    (hoje.getMonth() === nascimento.getMonth() && hoje.getDate() >= nascimento.getDate());
+  if (!jaFezAniversario) {
+    idade = idade - 1;
+  }
+
+  return idade;
+}
+
+// Define o nível de torcedor pela quantidade de lutas assistidas
+function descobrirNivel(lutas) {
+  if (lutas === 0) {
+    return "Novato";
+  } else if (lutas <= 10) {
+    return "Iniciante";
+  } else if (lutas <= 50) {
+    return "Torcedor";
+  } else if (lutas <= 200) {
+    return "Fã de carteirinha";
+  }
+  return "Lenda do octógono";
+}
+
+// Calcula e monta o texto do resultado com os dados já validados
+function montarResultado(dados) {
+  // Média de lutas assistidas por ano de vida, com 1 casa decimal
+  const mediaPorAno = (dados.lutas / dados.idade).toFixed(1).replace(".", ",");
+  const nivel = descobrirNivel(dados.lutas);
+
+  let html = "<p><strong>Cadastro enviado com sucesso, " + escaparHtml(dados.nome) + "!</strong></p>";
+  html += "<ul>";
+  html += "<li>Idade: " + dados.idade + " anos</li>";
+  if (dados.altura !== undefined) {
+    html += "<li>Altura: " + dados.altura.toFixed(2).replace(".", ",") + " m</li>";
+  }
+  html += "<li>Melhor lutador para você: " + escaparHtml(dados.melhor) + "</li>";
+  html += "<li>Categoria favorita: " + escaparHtml(dados.categoria) + "</li>";
+  html += "<li>Lutas assistidas: " + dados.lutas + " (média de " + mediaPorAno + " por ano de vida)</li>";
+  html += "<li>Seu nível de torcedor: <strong>" + nivel + "</strong></li>";
+  html += "</ul>";
+  return html;
+}
+
+/* ---------- Envio do formulário de cadastro ---------- */
+const formCadastro = document.getElementById("form-cadastro");
+const caixaCadastro = document.getElementById("cadastro-mensagem");
+
+formCadastro.addEventListener("submit", function (evento) {
+  // Impede o envio normal para o JavaScript conferir os dados primeiro
+  evento.preventDefault();
+
+  limparErros(formCadastro);
+  caixaCadastro.hidden = true;
+
+  const resultado = validarCadastro(formCadastro);
+
+  if (resultado.erros.length > 0) {
+    // Dados inválidos: mostra os problemas e deixa o usuário corrigir
+    let html = "<p><strong>Não foi possível enviar. Corrija:</strong></p><ul>";
+    resultado.erros.forEach(function (mensagem) {
+      html += "<li>" + escaparHtml(mensagem) + "</li>";
+    });
+    html += "</ul>";
+    mostrarMensagem(caixaCadastro, "erro", html);
+    return;
+  }
+
+  // Dados válidos: mostra o resultado calculado
+  mostrarMensagem(caixaCadastro, "sucesso", montarResultado(resultado.dados));
+});
+
+// Ao clicar em "Limpar", some também a mensagem e as marcações de erro
+formCadastro.addEventListener("reset", function () {
+  limparErros(formCadastro);
+  caixaCadastro.hidden = true;
+});
