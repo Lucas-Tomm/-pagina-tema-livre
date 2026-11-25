@@ -1,1 +1,61 @@
-/* Lendas do Octógono - folha de estilos (em construção) */
+/* ==========================================================
+   Lendas do Octógono - folha de estilos
+   Autor: Lucas Corrêa Tomm - DSM3 2025
+   ========================================================== */
+
+/* ---------- Cores e medidas usadas no site ---------- */
+:root {
+  --cor-fundo: #f2f2f2;       /* fundo da página */
+  --cor-caixa: #ffffff;       /* fundo das caixas de conteúdo */
+  --cor-texto: #1c1c1c;       /* texto principal */
+  --cor-escura: #1a1a1a;      /* cabeçalho e rodapé */
+  --cor-destaque: #c8102e;    /* vermelho do UFC */
+  --cor-destaque-escura: #9b0c23;
+  --cor-borda: #cccccc;
+  --largura-maxima: 960px;
+}
+
+/* ---------- Regras básicas ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+/* Imagens nunca passam da largura da tela */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Link "Pular para o conteúdo": fica escondido até receber o foco do teclado */
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 8px 16px;
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+}
+
+.pular:focus {
+  left: 0;
+  z-index: 10;
+}
+
+/* Foco visível para quem usa o teclado */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid #ffb400;
+  outline-offset: 2px;
+}
