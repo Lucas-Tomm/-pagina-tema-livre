@@ -359,3 +359,53 @@ footer {
 footer p {
   margin: 0;
 }
+
+/* ---------- Adaptação para celular ---------- */
+@media (max-width: 600px) {
+  .nome-site {
+    font-size: 1.4rem;
+  }
+
+  /* Menu em duas colunas para os botões caberem na tela */
+  header nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  main {
+    padding: 8px;
+  }
+
+  main > section {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .banner img {
+    max-height: 220px;
+  }
+
+  /* Sumário da seção Sobre passa a ficar um item por linha */
+  #sobre nav ul {
+    display: block;
+  }
+
+  /* Campos e botões ocupam a largura toda */
+  form,
+  #cadastro-mensagem,
+  #contato-aviso {
+    max-width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
